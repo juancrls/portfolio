@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+
+  --bone: #f4f2ea;
+  --bone-deep: #ebe8dd;
+  --paper: #fbfaf5;
+  --sage: #dde3d2;
+  --sage-deep: #cdd6c0;
+  --ink: #1b1e19;
+  --ink-soft: #545b4e;
+  --ink-faint: #6e7468;
+  --rule: #dcd8ca;
+  --rule-firm: #c3bfae;
+  --lime: #c8f24c;
+  --lime-edge: #a9cc3f;
+  --clay: #b4491a;
+  --moss: #2f6b45;
+
+  --shadow-rest: 0 1px 1px rgb(27 30 25 / 0.04), 0 10px 24px -18px rgb(27 30 25 / 0.35);
+  --shadow-lift: 0 18px 40px -20px rgb(27 30 25 / 0.4);
+}
+
+@theme inline {
+  --color-bone: var(--bone);
+  --color-bone-deep: var(--bone-deep);
+  --color-paper: var(--paper);
+  --color-sage: var(--sage);
+  --color-sage-deep: var(--sage-deep);
+  --color-ink: var(--ink);
+  --color-soft: var(--ink-soft);
+  --color-faint: var(--ink-faint);
+  --color-rule: var(--rule);
+  --color-rule-firm: var(--rule-firm);
+  --color-lime: var(--lime);
+  --color-clay: var(--clay);
+  --color-moss: var(--moss);
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jet), ui-monospace, "Cascadia Code", Menlo, monospace;
+
+  --radius-panel: 22px;
+  --radius-card: 16px;
+}
+
+* {
+  border-color: var(--rule);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bone);
+}
+
+body {
+  background: var(--bone);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv05";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* The surfaces the browser draws for us still belong to the palette. */
+::selection {
+  background: var(--lime);
+  color: var(--ink);
+}
+
+body {
+  caret-color: var(--clay);
+  scrollbar-color: var(--rule-firm) var(--bone);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bone);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--rule-firm);
+  border: 3px solid var(--bone);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-faint);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Numbers that get compared must not dance between rows. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+
+.numeral {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+  line-height: 0.86;
+}
+
+.rule-link {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--rule-firm);
+  transition: text-decoration-color 160ms ease;
+}
+.rule-link:hover {
+  text-decoration-color: var(--ink);
+}
+
+/* One authored moment: the pen stroke writing itself under the name. */
+@keyframes ink-in {
+  from {
+    stroke-dashoffset: var(--len);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.ink-stroke {
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+  animation: ink-in 2200ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
+}
+
+@keyframes wire-flow {
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+.wire-live {
+  stroke-dasharray: 4 3;
+  animation: wire-flow 900ms linear infinite;
+}
+
+@keyframes slot-breathe {
+  0%,
+  100% {
+    border-color: var(--rule-firm);
+    background: transparent;
+  }
+  50% {
+    border-color: var(--lime-edge);
+    background: color-mix(in oklab, var(--lime) 22%, transparent);
+  }
+}
+.slot-ghost {
+  animation: slot-breathe 1.7s ease-in-out infinite;
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+.settle {
+  animation: settle 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
