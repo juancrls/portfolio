@@ -1,0 +1,106 @@
+import Link from "next/link";
+import { ABOUT, CONTACT, HERO, PROJECTS } from "@/content/profile";
+import { SignatureStroke } from "@/components/SignatureStroke";
+import { IconArrowRight } from "@/components/icons";
+
+export default function Home() {
+  return (
+    <div className="mx-auto max-w-[68rem] px-5 sm:px-8">
+      <section className="settle relative pb-20 pt-14 sm:pt-24">
+        <h1 className="display max-w-[16ch] text-[clamp(2.6rem,7.5vw,5.2rem)]">
+          {HERO.headline}
+        </h1>
+        <SignatureStroke />
+        <p className="mt-7 max-w-[46ch] text-[clamp(1rem,1.6vw,1.15rem)] leading-[1.55] text-soft">
+          {HERO.lede}
+        </p>
+
+        <div className="mt-9 flex flex-wrap items-center gap-3">
+          <Link
+            href="/playground"
+            className="group inline-flex items-center gap-2 rounded-full bg-lime px-5 py-2.5 text-[14px] font-medium text-ink transition-transform duration-300 ease-out hover:-translate-y-0.5"
+          >
+            Open the playground
+            <IconArrowRight
+              size={15}
+              className="transition-transform duration-300 ease-out group-hover:translate-x-1"
+            />
+          </Link>
+          <a
+            href={`mailto:${CONTACT.email}`}
+            className="rounded-full border border-rule-firm px-5 py-2.5 text-[14px] font-medium text-ink transition-colors hover:bg-sage"
+          >
+            Get in touch
+          </a>
+        </div>
+
+        <p className="mt-10 text-[12px] text-faint">
+          {HERO.stack.join("   ·   ")}
+        </p>
+      </section>
+
+      <section id="work" className="scroll-mt-24 pb-8">
+        <ul className="space-y-3">
+          {PROJECTS.map((project) => (
+            <li key={project.slug}>
+              <Link
+                href={project.href}
+                className="group grid grid-cols-1 items-end gap-x-8 gap-y-5 rounded-[--radius-panel] bg-sage px-6 py-7 transition-colors duration-300 hover:bg-sage-deep sm:grid-cols-[minmax(0,1fr)_auto] sm:px-9 sm:py-8"
+              >
+                <div className="min-w-0">
+                  <h2 className="display text-[clamp(1.5rem,3vw,2.1rem)]">{project.name}</h2>
+                  <p className="mt-2.5 max-w-[46ch] text-[14px] leading-relaxed text-soft">
+                    {project.tagline}
+                  </p>
+                  <p className="mt-5 text-[11px] text-faint">{project.stack.join("  ·  ")}</p>
+                </div>
+
+                <div className="sm:text-right">
+                  <p className="numeral text-[clamp(2.4rem,6vw,3.6rem)] text-ink">
+                    {project.metric.value}
+                  </p>
+                  <p className="mt-2 max-w-[22ch] text-[12px] leading-snug text-soft sm:ml-auto">
+                    {project.metric.label}
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-ink">
+                    Read the case
+                    <IconArrowRight
+                      size={14}
+                      className="transition-transform duration-300 ease-out group-hover:translate-x-1"
+                    />
+                  </span>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="contact" className="scroll-mt-24 py-16">
+        <div className="grid gap-10 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
+          <p className="max-w-[52ch] text-[clamp(1.05rem,2vw,1.35rem)] leading-[1.5] text-ink">
+            {ABOUT}
+          </p>
+          <ul className="space-y-2 text-[14px] sm:text-right">
+            <li>
+              <a href={`mailto:${CONTACT.email}`} className="rule-link font-medium">
+                {CONTACT.email}
+              </a>
+            </li>
+            <li>
+              <a href={CONTACT.linkedin} className="rule-link text-soft">
+                linkedin.com/in/juan-fcosta
+              </a>
+            </li>
+            <li>
+              <a href={CONTACT.github} className="rule-link text-soft">
+                github.com/juancrls
+              </a>
+            </li>
+            <li className="text-[12px] text-faint">{CONTACT.location}</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  );
+}
