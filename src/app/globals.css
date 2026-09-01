@@ -10,7 +10,7 @@
   --sage-deep: #cdd6c0;
   --ink: #1b1e19;
   --ink-soft: #545b4e;
-  --ink-faint: #6e7468;
+  --ink-faint: #5f6659;
   --rule: #dcd8ca;
   --rule-firm: #c3bfae;
   --lime: #c8f24c;
@@ -94,7 +94,6 @@ body {
 :focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 3px;
-  border-radius: 4px;
 }
 
 /* Numbers that get compared must not dance between rows. */
@@ -195,5 +194,17 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* A cut edge should read as "more this way", not as a clipped drawing. */
+.scroll-fade {
+  -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 44px), transparent 100%);
+  mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 44px), transparent 100%);
+}
+@media (min-width: 720px) {
+  .scroll-fade {
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 }
