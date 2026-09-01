@@ -46,7 +46,7 @@ export function FrameworkCompare() {
         <VueIsland />
       </Card>
 
-      <div className="lg:col-span-2">
+      <div className="min-w-0 lg:col-span-2">
         <div role="tablist" aria-label="Implementation source" className="flex gap-1">
           {(["react", "vue"] as const).map((key) => (
             <button
@@ -81,7 +81,7 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-[--radius-card] border bg-paper p-4">
+    <section className="min-w-0 rounded-[--radius-card] border bg-paper p-4">
       <h3 className="text-[13px] font-semibold tracking-tight">{title}</h3>
       <p className="mb-3 font-mono text-[10px] text-faint">{subtitle}</p>
       {children}
