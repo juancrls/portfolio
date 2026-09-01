@@ -97,11 +97,19 @@ export function Canvas() {
           <div className="relative z-10 grid grid-cols-1 items-start gap-x-8 gap-y-14 sm:grid-cols-2">
             {blocks.map((block) => {
               const Renderer = RENDERERS[block.kind];
-              const missing = REGISTRY[block.kind].consumes.filter(
-                (capability) => !available.has(capability),
-              );
+              const spec = REGISTRY[block.kind];
+              const missing = spec.consumes.filter((capability) => !available.has(capability));
+              const degraded =
+                spec.optionalNote !== undefined &&
+                (spec.optionally ?? []).some((capability) => !available.has(capability));
               return (
-                <BlockShell key={block.id} id={block.id} kind={block.kind} missing={missing}>
+                <BlockShell
+                  key={block.id}
+                  id={block.id}
+                  kind={block.kind}
+                  missing={missing}
+                  note={degraded ? spec.optionalNote : undefined}
+                >
                   <Renderer id={block.id} />
                 </BlockShell>
               );

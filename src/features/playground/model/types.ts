@@ -8,6 +8,8 @@ export interface BlockSpec {
   blurb: string;
   provides: Capability[];
   consumes: Capability[];
+  optionally?: Capability[];
+  optionalNote?: string;
   proves: string;
   span: 1 | 2;
 }

@@ -12,12 +12,13 @@ interface Props {
   id: string;
   kind: BlockKind;
   missing: string[];
+  note?: string;
   children: React.ReactNode;
 }
 
 const LIFT_TARGET = 300;
 
-export function BlockShell({ id, kind, missing, children }: Props) {
+export function BlockShell({ id, kind, missing, note, children }: Props) {
   const spec = REGISTRY[kind];
   const { register } = useCanvasRegistry();
   const drag = usePlayground(selectDrag);
@@ -129,6 +130,10 @@ export function BlockShell({ id, kind, missing, children }: Props) {
               Unwired, nothing provides{" "}
               <span className="font-mono font-semibold">{missing.join(", ")}</span>.
             </p>
+          )}
+
+          {missing.length === 0 && note && (
+            <p className="border-b px-3 py-1.5 text-[11px] text-soft">{note}</p>
           )}
 
           {held && (

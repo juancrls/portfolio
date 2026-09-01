@@ -181,7 +181,11 @@ export interface Wire {
 export function computeWires(blocks: PlacedBlock[]): Wire[] {
   const wires: Wire[] = [];
   for (const consumer of blocks) {
-    for (const capability of REGISTRY[consumer.kind].consumes) {
+    const wanted = [
+      ...REGISTRY[consumer.kind].consumes,
+      ...(REGISTRY[consumer.kind].optionally ?? []),
+    ];
+    for (const capability of wanted) {
       const provider = blocks.find((b) => REGISTRY[b.kind].provides.includes(capability as never));
       if (provider) wires.push({ from: provider.id, to: consumer.id, capability });
     }
