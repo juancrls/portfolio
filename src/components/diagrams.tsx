@@ -100,7 +100,8 @@ const TRAIN_ROW_2: Node[] = [
 
 export function TrainingPipeline() {
   return (
-    <figure className="overflow-x-auto">
+    <figure>
+      <div className="scroll-fade overflow-x-auto">
       <svg viewBox="0 0 660 230" className="w-full min-w-[620px]" role="img"
         aria-label="Training pipeline: OFL fonts to skeleton to pen trajectory to dataset, then RNN training, checkpoint, TrOCR quality gate, and promote, with a feedback loop from the gate back to training.">
         <Defs />
@@ -134,6 +135,10 @@ export function TrainingPipeline() {
           score below the frozen ruler → retrain
         </text>
       </svg>
+      </div>
+      <figcaption className="mt-3 text-[12px] leading-snug text-soft">
+        Fonts become strokes, strokes become a dataset, and no checkpoint ships until the frozen ruler scores it.
+      </figcaption>
     </figure>
   );
 }
@@ -147,7 +152,8 @@ const RUNTIME: Node[] = [
 
 export function RuntimeDiagram() {
   return (
-    <figure className="overflow-x-auto">
+    <figure>
+      <div className="scroll-fade overflow-x-auto">
       <svg viewBox="0 0 660 100" className="w-full min-w-[620px]" role="img"
         aria-label="Runtime: browser sends text to the Flask API, the RNN engine generates strokes, and SVG comes back in about nine seconds on CPU.">
         <Defs />
@@ -158,6 +164,10 @@ export function RuntimeDiagram() {
           <Arrow key={`r-${i}`} d={`M ${132 + i * 176} 46 L ${168 + i * 176} 46`} />
         ))}
       </svg>
+      </div>
+      <figcaption className="mt-3 text-[12px] leading-snug text-soft">
+        One request: text in, pen strokes back as SVG, about nine seconds on CPU.
+      </figcaption>
     </figure>
   );
 }
@@ -184,7 +194,8 @@ export function ProgressionChart() {
   const line = RUNS.map((run, index) => `${index === 0 ? "M" : "L"} ${x(index)} ${y(run.score)}`).join(" ");
 
   return (
-    <figure className="overflow-x-auto">
+    <figure>
+      <div className="scroll-fade overflow-x-auto">
       <svg viewBox={`0 0 ${width} ${height}`} className="w-full min-w-[560px]" role="img"
         aria-label="Legibility score by training run: sint1 0.42, ofl1 0.54, ofl2 0.68, ofl3 0.70, against a 0.944 research baseline.">
         <Defs />
@@ -225,6 +236,10 @@ export function ProgressionChart() {
           </g>
         ))}
       </svg>
+      </div>
+      <figcaption className="mt-3 text-[12px] leading-snug text-soft">
+        Four rounds against the frozen corpus. The dashed line is the research baseline that cannot be licensed.
+      </figcaption>
     </figure>
   );
 }

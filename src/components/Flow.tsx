@@ -40,7 +40,8 @@ export function Flow({
   const byId = new Map(nodes.map((node) => [node.id, node]));
 
   return (
-    <figure className="overflow-x-auto">
+    <figure>
+      <div className="scroll-fade overflow-x-auto">
       <svg
         viewBox={`0 0 ${width} ${height}`}
         className="w-full"
@@ -162,6 +163,8 @@ export function Flow({
           );
         })}
       </svg>
+      </div>
+      <figcaption className="mt-3 text-[12px] leading-snug text-soft">{caption}</figcaption>
     </figure>
   );
 }
