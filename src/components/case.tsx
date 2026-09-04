@@ -58,9 +58,9 @@ export function Stats({ items }: { items: { value: string; label: string }[] }) 
   return (
     <dl className="mt-12 divide-y divide-[var(--sage-deep)] rounded-[--radius-panel] bg-sage px-6 py-2 sm:px-8">
       {items.map((item) => (
-        <div key={item.label} className="flex flex-wrap items-baseline gap-x-6 gap-y-1 py-5">
+        <div key={item.label} className="py-5 sm:flex sm:items-baseline sm:gap-x-6">
           <dt className="numeral text-[clamp(2rem,5vw,3rem)] text-ink">{item.value}</dt>
-          <dd className="max-w-[34ch] text-[14px] leading-snug text-soft">{item.label}</dd>
+          <dd className="mt-1.5 max-w-[34ch] text-[14px] leading-snug text-soft sm:mt-0">{item.label}</dd>
         </div>
       ))}
     </dl>

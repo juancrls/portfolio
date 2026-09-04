@@ -18,7 +18,7 @@ export default function Home() {
         <div className="mt-9 flex flex-wrap items-center gap-3">
           <Link
             href="/playground"
-            className="group inline-flex items-center gap-2 rounded-full bg-lime px-5 py-2.5 text-[14px] font-medium text-ink transition-transform duration-300 ease-out hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-2 rounded-full bg-lime px-5 py-2.5 text-[14px] font-medium text-ink shadow-[0_1px_2px_rgb(27_30_25/0.10)] transition-[transform,box-shadow,background-color] duration-300 ease-out hover:-translate-y-0.5 hover:bg-[var(--lime-edge)] hover:shadow-[0_10px_22px_-10px_rgb(27_30_25/0.45)]"
           >
             Open the playground
             <IconArrowRight
@@ -45,31 +45,35 @@ export default function Home() {
             <li key={project.slug}>
               <Link
                 href={project.href}
-                className="group grid grid-cols-1 items-end gap-x-8 gap-y-5 rounded-[--radius-panel] bg-sage px-6 py-7 transition-colors duration-300 hover:bg-sage-deep sm:grid-cols-[minmax(0,1fr)_auto] sm:px-9 sm:py-8"
+                className="group grid grid-cols-1 gap-x-8 gap-y-4 rounded-[--radius-panel] bg-sage px-6 py-7 transition-colors duration-300 hover:bg-sage-deep sm:grid-cols-[minmax(0,1fr)_auto] sm:px-9 sm:py-8"
               >
-                <div className="min-w-0">
-                  <h2 className="display text-[clamp(1.5rem,3vw,2.1rem)]">{project.name}</h2>
-                  <p className="mt-2.5 max-w-[46ch] text-[14px] leading-relaxed text-soft">
+                <h2 className="display min-w-0 text-[clamp(1.5rem,3vw,2.1rem)] sm:col-start-1 sm:row-start-1">
+                  {project.name}
+                </h2>
+
+                <div className="sm:col-start-2 sm:row-span-2 sm:row-start-1 sm:text-right">
+                  <p className="numeral text-[clamp(2.4rem,6vw,3.6rem)] text-ink">
+                    {project.metric.value}
+                  </p>
+                  <p className="mt-2 max-w-[24ch] text-[12px] leading-snug text-soft sm:ml-auto">
+                    {project.metric.label}
+                  </p>
+                </div>
+
+                <div className="min-w-0 sm:col-start-1 sm:row-start-2">
+                  <p className="max-w-[46ch] text-[14px] leading-relaxed text-soft">
                     {project.tagline}
                   </p>
                   <p className="mt-5 text-[11px] text-faint">{project.stack.join("  ·  ")}</p>
                 </div>
 
-                <div className="sm:text-right">
-                  <p className="numeral text-[clamp(2.4rem,6vw,3.6rem)] text-ink">
-                    {project.metric.value}
-                  </p>
-                  <p className="mt-2 max-w-[22ch] text-[12px] leading-snug text-soft sm:ml-auto">
-                    {project.metric.label}
-                  </p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-ink">
-                    Read the case
-                    <IconArrowRight
-                      size={14}
-                      className="transition-transform duration-300 ease-out group-hover:translate-x-1"
-                    />
-                  </span>
-                </div>
+                <span className="inline-flex items-center gap-1.5 text-[13px] font-medium text-ink sm:col-start-2 sm:row-start-3 sm:justify-end">
+                  Read the case
+                  <IconArrowRight
+                    size={14}
+                    className="transition-transform duration-300 ease-out group-hover:translate-x-1"
+                  />
+                </span>
               </Link>
             </li>
           ))}
