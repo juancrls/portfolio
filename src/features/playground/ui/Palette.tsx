@@ -40,13 +40,20 @@ function Chip({ kind, disabled }: { kind: BlockKind; disabled: boolean }) {
       aria-label={
         disabled ? `${spec.name} is already on the canvas` : `Add ${spec.name} to the canvas`
       }
-      className={`w-full rounded-lg border px-2.5 py-2 text-left transition-colors ${
+      className={`relative w-full rounded-lg border px-2.5 py-2 text-left transition-colors ${
         disabled
-          ? "cursor-not-allowed opacity-40"
+          ? "cursor-default border-transparent bg-sage"
           : "cursor-grab bg-paper hover:border-rule-firm hover:bg-sage active:cursor-grabbing"
       }`}
     >
-      <span className="block text-[12px] font-semibold tracking-tight">{spec.name}</span>
+      <span className="flex items-center gap-1.5 text-[12px] font-semibold tracking-tight">
+        {spec.name}
+        {disabled && (
+          <span className="ml-auto shrink-0 text-[9px] font-normal uppercase tracking-wider text-soft">
+            on canvas
+          </span>
+        )}
+      </span>
       <span className="mt-0.5 block font-mono text-[9px] leading-relaxed text-faint">
         {spec.provides.length > 0 && <>out: {spec.provides.join(", ")}</>}
         {spec.provides.length > 0 && spec.consumes.length > 0 && " · "}
