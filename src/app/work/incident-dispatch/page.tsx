@@ -54,7 +54,7 @@ export default function IncidentDispatchPage() {
         <Flow
           nodes={NODES}
           edges={EDGES}
-          caption="Intake feeds the case service, which calls dispatch over gRPC to assign a patrol unit; unit status flows back through Azure Service Bus into the case service."
+          caption="The shape of the system, not its service inventory. Intake feeds the case service, which calls dispatch over gRPC to assign a unit, and unit status flows back through Service Bus. Names here are generic: this one runs for a police force."
         />
       </Section>
 

@@ -57,7 +57,7 @@ export default function DebtRecoveryPage() {
         <Flow
           nodes={NODES}
           edges={EDGES}
-          caption="Source systems feed an ingestion API, which drives the contract and claims domain services; those publish events onto Service Bus and RabbitMQ, and state lands in SQL Server with a Redis cache."
+          caption="The shape of the platform, not its service inventory. Source systems feed an ingestion API, the contract and claims services publish events onto Service Bus and RabbitMQ, and state lands in SQL Server behind a Redis cache. Names here are generic: the internals belong to the client."
         />
       </Section>
 
