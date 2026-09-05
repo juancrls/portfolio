@@ -14,7 +14,7 @@ export default function PlaygroundPage() {
     <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
       <header>
         <BackLink />
-        <h1 className="mt-5 text-3xl font-semibold tracking-[-0.02em] sm:text-4xl">
+        <h1 className="display mt-5 text-[clamp(2.2rem,6vw,3.6rem)]">
           Components that wire themselves.
         </h1>
         <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-soft">

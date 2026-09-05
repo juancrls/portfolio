@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useCanvasRegistry } from "@/features/playground/ui/CanvasContext";
 import { roundedPath } from "@/lib/svgPath";
-import { computeWires } from "@/features/playground/model/state";
+import { computeWires, selectDrag, usePlayground } from "@/features/playground/model/state";
 import type { PlacedBlock } from "@/features/playground/model/types";
 
 interface Path {
@@ -25,6 +25,7 @@ export function Wires({
   container: HTMLElement | null;
 }) {
   const { nodes } = useCanvasRegistry();
+  const rewiring = usePlayground(selectDrag) !== null;
   const [paths, setPaths] = useState<Path[]>([]);
   const [size, setSize] = useState({ width: 0, height: 0 });
 
@@ -126,7 +127,8 @@ export function Wires({
             strokeWidth={1.5}
             strokeOpacity={0.6}
             strokeLinecap="round"
-            className="wire-live"
+            className={rewiring ? "wire-live" : undefined}
+            strokeDasharray="4 3"
           />
           {path.ports.map(([x, y]) => (
             <circle key={`${x}-${y}`} cx={x} cy={y} r={3} fill="var(--moss)" />
