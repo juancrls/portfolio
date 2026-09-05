@@ -22,7 +22,7 @@ export function Toolbar() {
             actions.setOptimized(!optimized);
           }}
           className={`relative h-5 w-9 shrink-0 rounded-full border transition-colors ${
-            optimized ? "bg-accent" : "bg-bone-deep"
+            optimized ? "bg-lime" : "bg-bone-deep"
           }`}
         >
           <span
