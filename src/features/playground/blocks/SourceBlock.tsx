@@ -65,7 +65,10 @@ export function SourceBlock({ id }: { id: string }) {
         <Stat label="isStale" value={String(query.isStale)} />
         <Stat label="staleTime" value={`${STALE_TIME / 1000}s`} />
         <Stat label="gcTime" value={`${GC_TIME / 60_000}m`} />
+        
       </dl>
+
+      <p className="text-[11px] text-faint">Rows are generated in the browser, not fetched.</p>
 
       {servedFromCache && (
         <p className="text-[11px] font-medium text-moss">Cache hit. Served without a request.</p>
