@@ -55,7 +55,7 @@ export default function Home() {
                   <p className="numeral text-[clamp(2.4rem,6vw,3.6rem)] text-ink">
                     {project.metric.value}
                   </p>
-                  <p className="mt-1.5 max-w-[24ch] text-[12px] leading-snug text-faint sm:ml-auto">
+                  <p className="mt-1.5 max-w-[24ch] text-[12px] leading-snug text-faint transition-colors group-hover:text-soft sm:ml-auto">
                     {project.metric.label}
                   </p>
                 </div>
@@ -64,7 +64,9 @@ export default function Home() {
                   <p className="max-w-[46ch] text-[14px] leading-relaxed text-soft">
                     {project.tagline}
                   </p>
-                  <p className="mt-5 text-[11px] text-faint">{project.stack.join("  ·  ")}</p>
+                  <p className="mt-5 text-[11px] text-faint transition-colors group-hover:text-soft">
+                    {project.stack.join("  ·  ")}
+                  </p>
                 </div>
 
                 <span className="inline-flex items-center gap-1.5 text-[13px] font-medium text-ink sm:col-start-2 sm:row-start-3 sm:justify-end">
