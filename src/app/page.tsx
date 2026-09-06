@@ -55,12 +55,12 @@ export default function Home() {
                   <p className="numeral text-[clamp(2.4rem,6vw,3.6rem)] text-ink">
                     {project.metric.value}
                   </p>
-                  <p className="mt-2 max-w-[24ch] text-[12px] leading-snug text-soft sm:ml-auto">
+                  <p className="mt-1.5 max-w-[24ch] text-[12px] leading-snug text-faint sm:ml-auto">
                     {project.metric.label}
                   </p>
                 </div>
 
-                <div className="min-w-0 sm:col-start-1 sm:row-start-2">
+                <div className="mt-2 min-w-0 sm:mt-0 sm:col-start-1 sm:row-start-2">
                   <p className="max-w-[46ch] text-[14px] leading-relaxed text-soft">
                     {project.tagline}
                   </p>

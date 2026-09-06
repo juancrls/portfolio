@@ -164,7 +164,7 @@ export function Flow({
         })}
       </svg>
       </div>
-      <figcaption className="mt-3 text-[12px] leading-snug text-soft">{caption}</figcaption>
+      <figcaption className="mt-3 max-w-[62ch] text-[13px] leading-normal text-soft">{caption}</figcaption>
     </figure>
   );
 }

@@ -136,7 +136,7 @@ export function TrainingPipeline() {
         </text>
       </svg>
       </div>
-      <figcaption className="mt-3 text-[12px] leading-snug text-soft">
+      <figcaption className="mt-3 max-w-[62ch] text-[13px] leading-normal text-soft">
         Fonts become strokes, strokes become a dataset, and no checkpoint ships until the frozen ruler scores it.
       </figcaption>
     </figure>
@@ -165,7 +165,7 @@ export function RuntimeDiagram() {
         ))}
       </svg>
       </div>
-      <figcaption className="mt-3 text-[12px] leading-snug text-soft">
+      <figcaption className="mt-3 max-w-[62ch] text-[13px] leading-normal text-soft">
         One request: text in, pen strokes back as SVG, about nine seconds on CPU.
       </figcaption>
     </figure>
@@ -237,7 +237,7 @@ export function ProgressionChart() {
         ))}
       </svg>
       </div>
-      <figcaption className="mt-3 text-[12px] leading-snug text-soft">
+      <figcaption className="mt-3 max-w-[62ch] text-[13px] leading-normal text-soft">
         Four rounds against the frozen corpus. The dashed line is the research baseline that cannot be licensed.
       </figcaption>
     </figure>
