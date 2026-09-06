@@ -1,0 +1,93 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "$description": "Mirror of src/app/globals.css. Recorded from the shipped build. globals.css is the source of truth; this file is derived.",
+  "color": {
+    "bone": { "$value": "#f4f2ea", "$type": "color", "$description": "Page ground. html and body only." },
+    "bone-deep": { "$value": "#ebe8dd", "$type": "color", "$description": "Inset and hover ground for controls." },
+    "paper": { "$value": "#fbfaf5", "$type": "color", "$description": "Raised working surfaces above bone." },
+    "sage": { "$value": "#dde3d2", "$type": "color", "$description": "Editorial panels. Binding ground for ink-faint at 4.53:1." },
+    "sage-deep": { "$value": "#cdd6c0", "$type": "color", "$description": "Hover state and divider of a sage panel. Never a resting ground. ink-faint is not permitted on it (3.96:1)." },
+    "ink": { "$value": "#1b1e19", "$type": "color", "$description": "Headlines, numerals, primary body, text on lime." },
+    "ink-soft": { "$value": "#545b4e", "$type": "color", "$description": "Secondary prose. 5.36:1 on sage." },
+    "ink-faint": { "$value": "#5f6659", "$type": "color", "$description": "Metadata only. 4.53:1 on sage, 5.31:1 on bone. May darken, never lighten." },
+    "rule": { "$value": "#dcd8ca", "$type": "color", "$description": "Global border colour, set on the universal selector." },
+    "rule-firm": { "$value": "#c3bfae", "$type": "color", "$description": "Visible hairline: outlines, underlines, scrollbar thumb, signature stroke." },
+    "lime": { "$value": "#c8f24c", "$type": "color", "$description": "The accent. Fill only, once per viewport, on the primary action. Also ::selection." },
+    "lime-edge": { "$value": "#a9cc3f", "$type": "color", "$description": "Not the accent. Lime-pill hover, held-block ring, SVG data marks." },
+    "clay": { "$value": "#b4491a", "$type": "color", "$description": "Destructive and degraded. Also caret-color." },
+    "moss": { "$value": "#2f6b45", "$type": "color", "$description": "Wired and healthy." }
+  },
+  "contrast": {
+    "$description": "WCAG 2.1 ratios computed from the shipped hex values.",
+    "ink": { "bone": 15.03, "paper": 16.12, "sage": 12.83, "sage-deep": 11.21, "lime": 13.05 },
+    "ink-soft": { "bone": 6.28, "paper": 6.74, "sage": 5.36, "sage-deep": 4.68 },
+    "ink-faint": { "bone": 5.31, "bone-deep": 4.85, "paper": 5.69, "sage": 4.53, "sage-deep": 3.96 },
+    "clay": { "bone": 4.79, "paper": 5.14, "sage": 4.09 },
+    "moss": { "bone": 5.66, "paper": 6.07, "sage": 4.83 }
+  },
+  "radius": {
+    "panel": { "$value": "22px", "$type": "dimension", "$description": "Editorial surfaces." },
+    "card": { "$value": "16px", "$type": "dimension", "$description": "Working surfaces." },
+    "pill": { "$value": "9999px", "$type": "dimension", "$description": "Tailwind rounded-full. Pills and circular controls." },
+    "control": { "$value": "6px", "$type": "dimension", "$description": "Tailwind rounded-md. Small controls inside a card." }
+  },
+  "shadow": {
+    "rest": { "$value": "0 1px 1px rgb(27 30 25 / 0.04), 0 10px 24px -18px rgb(27 30 25 / 0.35)", "$type": "shadow", "$description": "Resting elevation of a paper surface." },
+    "lift": { "$value": "0 18px 40px -20px rgb(27 30 25 / 0.4)", "$type": "shadow", "$description": "Only while a block is picked up." }
+  },
+  "font": {
+    "display": { "$value": "Bricolage Grotesque", "$description": "Voice and numerals. Applied via .display and .numeral." },
+    "sans": { "$value": "Archivo", "$description": "Body default on <body>, with ss01 and cv05." },
+    "mono": { "$value": "JetBrains Mono", "$description": "Restricted to code, identifiers and measured values." }
+  },
+  "typeClass": {
+    "display": { "weight": 500, "letterSpacing": "-0.035em", "lineHeight": 0.98 },
+    "numeral": { "weight": 300, "letterSpacing": "-0.05em", "lineHeight": 0.86, "numeric": "tabular-nums" },
+    "tnum": { "numeric": "tabular-nums" }
+  },
+  "typeScale": {
+    "hero": "clamp(2.6rem, 7.5vw, 5.2rem)",
+    "pageTitle": "clamp(2.2rem, 6vw, 3.6rem)",
+    "metric": "clamp(2.4rem, 6vw, 3.6rem)",
+    "panelHead": "clamp(1.5rem, 3vw, 2.1rem)",
+    "statement": "clamp(1.05rem, 2vw, 1.35rem)",
+    "lede": "clamp(1rem, 1.6vw, 1.15rem)",
+    "body": "16px",
+    "smallBody": ["15px", "14px"],
+    "ui": ["13px", "12px"],
+    "meta": ["11px", "10px"]
+  },
+  "measure": {
+    "pageContainer": "68rem",
+    "playgroundContainer": "max-w-6xl",
+    "articleContainer": "max-w-3xl",
+    "caseBody": "68ch",
+    "caseCaption": "64ch",
+    "figureCaption": "62ch",
+    "statement": "52ch",
+    "lede": "46ch",
+    "factDefinition": "34ch",
+    "metricLabel": "24ch",
+    "heroHeadline": "16ch"
+  },
+  "motion": {
+    "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "ink-in": { "duration": "2200ms", "delay": "200ms", "iterations": 1, "kind": "authored", "trigger": "page load" },
+    "settle": { "duration": "520ms", "iterations": 1, "kind": "authored", "trigger": "section or block mount" },
+    "wire-flow": { "duration": "900ms", "easing": "linear", "iterations": "infinite", "kind": "state-indicator", "trigger": "active drag only" },
+    "slot-breathe": { "duration": "1.7s", "easing": "ease-in-out", "iterations": "infinite", "kind": "state-indicator", "trigger": "card lifted only" },
+    "reducedMotion": "All animation and transition durations clamped to 0.01ms, one iteration, smooth scroll off."
+  },
+  "icon": {
+    "viewBox": "0 0 24 24",
+    "strokeWidth": 1.6,
+    "stroke": "currentColor",
+    "fill": "none",
+    "linecap": "round",
+    "linejoin": "round",
+    "defaultSize": 16,
+    "shippedSizes": [13, 14, 15, 16],
+    "set": ["IconGrip", "IconClose", "IconCode", "IconTrash", "IconArrowRight", "IconArrowLeft", "IconExternal", "IconPlus", "IconRefresh", "IconCaret"]
+  },
+  "focus": { "outline": "2px solid var(--ink)", "outlineOffset": "3px" }
+}
