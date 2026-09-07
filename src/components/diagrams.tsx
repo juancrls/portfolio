@@ -173,10 +173,10 @@ export function RuntimeDiagram() {
 }
 
 const RUNS = [
-  { tag: "sint1", note: "Windows fonts", score: 0.42 },
-  { tag: "ofl1", note: "OFL, no priming", score: 0.54 },
-  { tag: "ofl2", note: "+ style priming", score: 0.68 },
-  { tag: "ofl3", note: "+ tuned sampling", score: 0.7 },
+  { tag: "sint1", note: "system fonts", score: 0.42 },
+  { tag: "ofl1", note: "open cursive fonts", score: 0.54 },
+  { tag: "ofl2", note: "open cursive fonts", score: 0.68 },
+  { tag: "ofl3", note: "open cursive fonts", score: 0.7 },
 ];
 
 const BASELINE = 0.944;
