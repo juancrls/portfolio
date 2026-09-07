@@ -70,7 +70,7 @@ export default function DebtRecoveryPage() {
 
       <StackLine>
         .NET 10 · C# · SQL Server · Azure Service Bus · RabbitMQ · Redis · Terraform · Azure DevOps
-        · DDD · CQRS
+        · DDD
       </StackLine>
     </article>
   );

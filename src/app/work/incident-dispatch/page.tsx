@@ -12,7 +12,7 @@ const NODES: FlowNode[] = [
   { id: "intake", col: 0, row: 0, label: "Intake", sub: "call · report", tone: "external" },
   { id: "cases", col: 1, row: 0, label: "Case service", sub: "creation · triage", tone: "accent" },
   { id: "dispatch", col: 2, row: 0, label: "Dispatch", sub: "unit assignment", tone: "accent" },
-  { id: "bus", col: 1, row: 1, label: "Service Bus", sub: "status events" },
+  { id: "bus", col: 1, row: 1, label: "RabbitMQ", sub: "status events" },
   { id: "units", col: 2, row: 1, label: "Patrol units", sub: "live status", tone: "external" },
 ];
 
@@ -54,7 +54,7 @@ export default function IncidentDispatchPage() {
         <Flow
           nodes={NODES}
           edges={EDGES}
-          caption="The shape of the system, not its service inventory. Intake feeds the case service, which calls dispatch over gRPC to assign a unit, and unit status flows back through Service Bus. Names here are generic: this one runs for a police force."
+          caption="The shape of the system, not its service inventory. Intake feeds the case service, which calls dispatch over gRPC to assign a unit, and unit status flows back through RabbitMQ. Names here are generic: this one runs for a police force."
         />
       </Section>
 
@@ -75,7 +75,7 @@ export default function IncidentDispatchPage() {
       </Section>
 
       <StackLine>
-        .NET 8 · C# · SQL Server · gRPC · Azure Service Bus · Redis · Terraform · DDD
+        .NET 8 · C# · SQL Server · gRPC · RabbitMQ · Redis · Terraform · DDD
       </StackLine>
     </article>
   );

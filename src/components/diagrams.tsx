@@ -85,7 +85,7 @@ function Defs() {
 }
 
 const TRAIN_ROW_1: Node[] = [
-  { id: "fonts", x: 0, y: 16, label: "OFL fonts", sub: "6 cursive faces" },
+  { id: "fonts", x: 0, y: 16, label: "OFL fonts", sub: "12 cursive faces" },
   { id: "skeleton", x: 176, y: 16, label: "1px skeleton", sub: "skimage" },
   { id: "traj", x: 352, y: 16, label: "Pen trajectory", sub: "accents kept" },
   { id: "dataset", x: 528, y: 16, label: "Dataset", sub: "21.6k pairs" },

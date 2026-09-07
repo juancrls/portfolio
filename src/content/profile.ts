@@ -37,7 +37,7 @@ export const PROJECTS: ProjectCard[] = [
     name: "Incident Dispatch",
     tagline: "Unified case creation and patrol dispatch for the São Paulo military police.",
     metric: { value: "−62%", label: "response time on urgent incidents" },
-    stack: [".NET 8", "gRPC", "Azure Service Bus", "Redis", "DDD"],
+    stack: [".NET 8", "gRPC", "RabbitMQ", "Redis", "DDD"],
     href: "/work/incident-dispatch",
   },
   {

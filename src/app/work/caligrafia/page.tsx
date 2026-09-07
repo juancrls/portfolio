@@ -13,7 +13,7 @@ export default function CaligrafiaPage() {
     <article className="mx-auto max-w-3xl px-5 py-12 sm:px-8">
       <BackLink />
       <CaseHeader
-        context="Personal project · 2025 to now"
+        context="Personal project · 2026"
         title="Caligraf.ia"
         lede="Typed Portuguese in, handwritten pen strokes out. Trained from scratch, because the weights everyone uses are research-only and cannot ship."
         links={[{ href: "https://caligrafia.app", label: "Visit caligrafia.app" }]}
