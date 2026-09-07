@@ -82,7 +82,10 @@ export default function Home() {
         </ul>
       </section>
 
-      <section id="contact" className="scroll-mt-24 py-16">
+      <section
+        id="contact"
+        className="-mx-5 scroll-mt-24 rounded-[--radius-panel] px-5 py-14 sm:-mx-8 sm:px-8"
+      >
         <div className="grid gap-10 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
           <p className="max-w-[52ch] text-[clamp(1.05rem,2vw,1.35rem)] leading-[1.5] text-ink">
             {ABOUT}

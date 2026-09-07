@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Archivo, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { HashFlash } from "@/components/HashFlash";
 import "./globals.css";
 
 const display = Bricolage_Grotesque({
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <Nav />
         <main id="main">{children}</main>
+        <HashFlash />
         <Footer />
       </body>
     </html>
