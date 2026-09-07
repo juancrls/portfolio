@@ -15,11 +15,11 @@ export function Nav() {
       >
         <Link
           href="/"
-          className="display text-[15px] tracking-[-0.02em] text-ink"
+          className="display rounded-full bg-paper/85 px-4 py-1.5 text-[15px] tracking-[-0.02em] text-ink shadow-[0_1px_2px_rgb(27_30_25/0.05)] ring-1 ring-[var(--rule)] backdrop-blur-md transition-colors hover:bg-paper"
         >
           Juan Costa
         </Link>
-        <ul className="ml-auto flex items-center gap-1 rounded-full bg-paper/80 p-1 backdrop-blur-md">
+        <ul className="ml-auto flex items-center gap-1 rounded-full bg-paper/85 p-1 shadow-[0_1px_2px_rgb(27_30_25/0.05)] ring-1 ring-[var(--rule)] backdrop-blur-md">
           {LINKS.map((link) => (
             <li key={link.href}>
               <Link
