@@ -56,6 +56,7 @@ export function BlockShell({ id, kind, missing, note, children }: Props) {
                 top: 0,
                 width: drag.w,
                 zIndex: 60,
+                pointerEvents: "none",
                 willChange: "transform",
                 transform: `translate3d(${drag.x - drag.grabX * scale}px, ${
                   drag.y - drag.grabY * scale

@@ -208,3 +208,32 @@ body {
     mask-image: none;
   }
 }
+
+/* While a block is in the hand, nothing under the cursor is selectable. */
+body.is-dragging,
+body.is-dragging * {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+body.is-dragging {
+  cursor: grabbing !important;
+}
+
+/* Landing on an anchor should announce itself: two clean blinks, then gone. */
+@keyframes flash-panel {
+  0%,
+  100% { background-color: transparent; }
+  12%,
+  46% { background-color: var(--sage); }
+  29% { background-color: transparent; }
+}
+.flash {
+  animation: flash-panel 1400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flash {
+    animation: none;
+    background-color: var(--sage);
+  }
+}
