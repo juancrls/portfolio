@@ -56,7 +56,7 @@ export function CaseHeader({
 
 export function Stats({ items }: { items: { value: string; label: string }[] }) {
   return (
-    <dl className="mt-12 divide-y divide-[var(--sage-deep)] rounded-[--radius-panel] bg-sage px-6 py-2 sm:px-8">
+    <dl className="mt-12 divide-y divide-[var(--sage-deep)] rounded-[var(--radius-panel)] bg-sage px-6 py-2 sm:px-8">
       {items.map((item) => (
         <div key={item.label} className="py-5 sm:flex sm:items-baseline sm:gap-x-6">
           <dt className="numeral text-[clamp(2rem,5vw,3rem)] text-ink">{item.value}</dt>
@@ -80,7 +80,7 @@ export function Section({ title, children }: { title: string; children: React.Re
 
 export function Callout({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <aside className="mt-14 rounded-[--radius-panel] bg-sage px-6 py-6 sm:px-8">
+    <aside className="mt-14 rounded-[var(--radius-panel)] bg-sage px-6 py-6 sm:px-8">
       <h2 className="display text-[1.15rem] text-ink">{title}</h2>
       <p className="mt-3 max-w-[64ch] text-[15px] leading-[1.65] text-soft">{children}</p>
     </aside>

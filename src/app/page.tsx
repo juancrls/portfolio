@@ -45,7 +45,7 @@ export default function Home() {
             <li key={project.slug}>
               <Link
                 href={project.href}
-                className="group grid grid-cols-1 gap-x-8 gap-y-4 rounded-[--radius-panel] bg-sage px-6 py-7 transition-colors duration-300 hover:bg-sage-deep sm:grid-cols-[minmax(0,1fr)_auto] sm:px-9 sm:py-8"
+                className="group grid grid-cols-1 gap-x-8 gap-y-4 rounded-[var(--radius-panel)] bg-sage px-6 py-7 transition-colors duration-300 hover:bg-sage-deep sm:grid-cols-[minmax(0,1fr)_auto] sm:px-9 sm:py-8"
               >
                 <h2 className="display min-w-0 text-[clamp(1.5rem,3vw,2.1rem)] sm:col-start-1 sm:row-start-1">
                   {project.name}
@@ -84,7 +84,7 @@ export default function Home() {
 
       <section
         id="contact"
-        className="-mx-5 scroll-mt-24 rounded-[--radius-panel] px-5 py-14 sm:-mx-8 sm:px-8"
+        className="-mx-5 scroll-mt-24 rounded-[var(--radius-panel)] px-5 py-14 sm:-mx-8 sm:px-8"
       >
         <div className="grid gap-10 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
           <p className="max-w-[52ch] text-[clamp(1.05rem,2vw,1.35rem)] leading-[1.5] text-ink">

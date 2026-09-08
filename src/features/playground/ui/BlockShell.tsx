@@ -30,6 +30,7 @@ export function BlockShell({ id, kind, missing, note, children }: Props) {
   const held = mine && drag.keyboard;
   const lifted = mine && !drag.keyboard;
   const leaving = lifted && drag.outside;
+  const isTarget = drag?.over === id && !drag.keyboard;
 
   const scale = lifted ? Math.max(0.3, Math.min(0.62, LIFT_TARGET / (drag.w || LIFT_TARGET))) : 1;
 
@@ -43,7 +44,7 @@ export function BlockShell({ id, kind, missing, note, children }: Props) {
       {lifted && (
         <div
           aria-hidden
-          className="slot-ghost absolute inset-0 rounded-[--radius-card] border-2 border-dashed"
+          className="slot-ghost absolute inset-0 rounded-[var(--radius-card)] border-2 border-dashed"
         />
       )}
 
@@ -80,14 +81,20 @@ export function BlockShell({ id, kind, missing, note, children }: Props) {
 
         <section
           aria-label={spec.name}
-          className={`settle flex flex-col rounded-[--radius-card] border bg-paper ${
+          className={`settle flex flex-col rounded-[var(--radius-card)] border ${
+            isTarget ? "bg-sage" : "bg-paper"
+          } ${
             missing.length > 0 ? "border-dashed" : ""
           } ${held ? "ring-2 ring-[var(--lime-edge)]" : ""} ${
             leaving ? "ring-2 ring-[var(--clay)]" : ""
-          }`}
+          } ${isTarget ? "ring-2 ring-[var(--lime-edge)]" : ""}`}
           style={{
             transformOrigin: "top left",
-            transform: lifted ? `scale(${scale}) rotate(-1.6deg)` : "scale(1)",
+            transform: lifted
+              ? `scale(${scale}) rotate(-1.6deg)`
+              : isTarget
+                ? "scale(0.985)"
+                : "scale(1)",
             transition:
               "transform 340ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 340ms cubic-bezier(0.16, 1, 0.3, 1)",
             boxShadow: lifted ? "var(--shadow-lift)" : "var(--shadow-rest)",
