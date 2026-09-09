@@ -67,7 +67,7 @@ export function Canvas() {
       }}
       onDragLeave={() => setDragging(false)}
       onDrop={onDrop}
-      className={`relative min-h-[420px] rounded-[--radius-card] border-2 border-dashed p-5 transition-colors sm:p-7 ${
+      className={`relative min-h-[420px] rounded-[var(--radius-card)] border-2 border-dashed p-5 transition-colors sm:p-7 ${
         leaving
           ? "border-[var(--clay)] bg-bone-deep"
           : dragging || holding

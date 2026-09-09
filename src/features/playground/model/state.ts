@@ -18,6 +18,8 @@ export interface DragState {
   h: number;
   grabX: number;
   grabY: number;
+  /** Block the pointer is over. The swap happens on release, not per frame. */
+  over: string | null;
 }
 
 export type DatasetStatus = "idle" | "pending" | "success" | "error";

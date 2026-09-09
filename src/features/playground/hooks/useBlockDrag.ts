@@ -35,20 +35,16 @@ export function useBlockDrag(id: string, kind: BlockKind) {
     [canvas],
   );
 
-  const reorderUnder = useCallback(
-    (x: number, y: number) => {
-      const blocks = store.get().blocks;
-      for (let index = 0; index < blocks.length; index += 1) {
-        const block = blocks[index];
+  const targetUnder = useCallback(
+    (x: number, y: number): string | null => {
+      for (const block of store.get().blocks) {
         if (block.id === id) continue;
         const element = nodes.get(block.id);
         if (!element) continue;
         const r = element.getBoundingClientRect();
-        if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) {
-          actions.reorderTo(id, index);
-          return;
-        }
+        if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return block.id;
       }
+      return null;
     },
     [id, nodes],
   );
@@ -71,10 +67,13 @@ export function useBlockDrag(id: string, kind: BlockKind) {
       if (!wasActive) return;
 
       const drag = store.get().drag;
-      if (drag && cancelled) {
-        actions.reorderTo(id, drag.originIndex);
-      } else if (drag && isOutside(x, y)) {
-        actions.removeBlock(id);
+      if (drag && !cancelled) {
+        if (isOutside(x, y)) {
+          actions.removeBlock(id);
+        } else if (drag.over) {
+          const index = store.get().blocks.findIndex((block) => block.id === drag.over);
+          if (index >= 0) actions.reorderTo(id, index);
+        }
       }
       actions.endDrag();
     },
@@ -112,6 +111,7 @@ export function useBlockDrag(id: string, kind: BlockKind) {
             h: slot?.height ?? 0,
             grabX: slot ? start.x - slot.left : 0,
             grabY: slot ? start.y - slot.top : 0,
+            over: null,
           });
         }
 
@@ -119,8 +119,7 @@ export function useBlockDrag(id: string, kind: BlockKind) {
         frame.current = requestAnimationFrame(() => {
           frame.current = 0;
           const outside = isOutside(x, y);
-          actions.updateDrag({ x, y, outside });
-          if (!outside) reorderUnder(x, y);
+          actions.updateDrag({ x, y, outside, over: outside ? null : targetUnder(x, y) });
         });
       };
 
@@ -143,7 +142,7 @@ export function useBlockDrag(id: string, kind: BlockKind) {
         window.removeEventListener("keydown", onKey);
       };
     },
-    [id, kind, isOutside, nodes, reorderUnder, settle],
+    [id, kind, isOutside, nodes, targetUnder, settle],
   );
 
   useEffect(() => () => detach.current(), []);
@@ -171,6 +170,7 @@ export function useBlockDrag(id: string, kind: BlockKind) {
           h: 0,
           grabX: 0,
           grabY: 0,
+          over: null,
         });
         return;
       }

@@ -22,7 +22,7 @@ export function Hud() {
   return (
     <aside
       aria-label="Live performance panel"
-      className="rounded-[--radius-card] border bg-paper p-3 font-mono text-[11px]"
+      className="rounded-[var(--radius-card)] border bg-paper p-3 font-mono text-[11px]"
     >
       <h2 className="mb-2 font-sans text-[11px] font-semibold uppercase tracking-wider text-faint">
         Live metrics
