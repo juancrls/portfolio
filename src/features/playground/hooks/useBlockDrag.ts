@@ -10,6 +10,8 @@ const EDGE_SLACK = 10;
 
 const noop = () => {};
 
+export const END_ZONE = "end";
+
 // Window listeners rather than setPointerCapture: reordering moves the dragged
 // card in the DOM, and Chrome drops pointer capture when that happens, which
 // ended the drag mid-gesture. Window listeners are indifferent to DOM moves.
@@ -36,7 +38,7 @@ export function useBlockDrag(id: string, kind: BlockKind) {
   );
 
   const targetUnder = useCallback(
-    (x: number, y: number): string | null => {
+    (x: number, y: number): string => {
       for (const block of store.get().blocks) {
         if (block.id === id) continue;
         const element = nodes.get(block.id);
@@ -44,7 +46,8 @@ export function useBlockDrag(id: string, kind: BlockKind) {
         const r = element.getBoundingClientRect();
         if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return block.id;
       }
-      return null;
+      // Inside the canvas but over no block: the empty run below everything.
+      return END_ZONE;
     },
     [id, nodes],
   );
@@ -70,6 +73,8 @@ export function useBlockDrag(id: string, kind: BlockKind) {
       if (drag && !cancelled) {
         if (isOutside(x, y)) {
           actions.removeBlock(id);
+        } else if (drag.over === END_ZONE) {
+          actions.reorderTo(id, store.get().blocks.length - 1);
         } else if (drag.over) {
           const index = store.get().blocks.findIndex((block) => block.id === drag.over);
           if (index >= 0) actions.reorderTo(id, index);

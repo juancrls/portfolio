@@ -9,6 +9,7 @@ import { PaginatorBlock } from "@/features/playground/blocks/PaginatorBlock";
 import { SourceBlock } from "@/features/playground/blocks/SourceBlock";
 import { TableBlock } from "@/features/playground/blocks/TableBlock";
 import { useCanvasRegistry } from "@/features/playground/ui/CanvasContext";
+import { END_ZONE } from "@/features/playground/hooks/useBlockDrag";
 import { PALETTE, REGISTRY } from "@/features/playground/model/registry";
 import {
   actions,
@@ -115,6 +116,18 @@ export function Canvas() {
               );
             })}
           </div>
+          {holding && blocks.length > 1 && (
+            <div
+              aria-hidden
+              className={`relative z-10 mt-14 grid place-items-center rounded-[var(--radius-card)] border-2 border-dashed py-10 text-[12px] transition-colors ${
+                drag?.over === END_ZONE
+                  ? "border-[var(--lime-edge)] bg-sage text-ink"
+                  : "border-rule-firm text-soft"
+              }`}
+            >
+              {drag?.over === END_ZONE ? "Release to place last" : "Drop here to place last"}
+            </div>
+          )}
           <Wires blocks={blocks} container={container} />
         </>
       )}
