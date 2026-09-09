@@ -106,6 +106,38 @@ await check("escape during a drag puts the block back", async () => {
   assert.deepEqual(await order(), before, "order was not restored");
 });
 
+
+// The reported regression: crossing a large block used to swap on every frame,
+// so the layout oscillated under the cursor.
+await check("crossing the data table swaps at most once", async () => {
+  const handle = await centre('button[aria-label^="Move Filter Card"]');
+  const table = await (await page.$('[data-block="table-3"]')).boundingBox();
+
+  await page.evaluate(() => {
+    window.__seen = new Set();
+    window.__tick = setInterval(() => {
+      window.__seen.add(
+        [...document.querySelectorAll("[data-block]")].map((e) => e.dataset.block).join(","),
+      );
+    }, 16);
+  });
+
+  await page.mouse.move(handle.x, handle.y);
+  await page.mouse.down();
+  await page.mouse.move(handle.x, handle.y + 30, { steps: 5 });
+  for (let y = table.y + 10; y < table.y + table.height - 10; y += 20) {
+    await page.mouse.move(table.x + table.width / 2, y, { steps: 2 });
+  }
+  await page.mouse.up();
+  await new Promise((r) => setTimeout(r, 400));
+
+  const states = await page.evaluate(() => {
+    clearInterval(window.__tick);
+    return window.__seen.size;
+  });
+  assert.ok(states <= 2, `layout took ${states} distinct orders during one crossing`);
+});
+
 await browser.close();
 console.log(failures === 0 ? "\nall drag tests passed" : `\n${failures} failing`);
 process.exit(failures === 0 ? 0 : 1);

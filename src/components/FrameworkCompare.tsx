@@ -63,7 +63,7 @@ export function FrameworkCompare() {
             </button>
           ))}
         </div>
-        <pre className="mt-2 overflow-x-auto rounded-[--radius-card] border bg-bone-deep px-4 py-3 font-mono text-[11.5px] leading-relaxed">
+        <pre className="mt-2 overflow-x-auto rounded-[var(--radius-card)] border bg-bone-deep px-4 py-3 font-mono text-[11.5px] leading-relaxed">
           <code>{tab === "react" ? REACT_CODE : VUE_CODE}</code>
         </pre>
       </div>
@@ -81,7 +81,7 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <section className="min-w-0 rounded-[--radius-card] border bg-paper p-4">
+    <section className="min-w-0 rounded-[var(--radius-card)] border bg-paper p-4">
       <h3 className="text-[13px] font-semibold tracking-tight">{title}</h3>
       <p className="mb-3 font-mono text-[10px] text-faint">{subtitle}</p>
       {children}
