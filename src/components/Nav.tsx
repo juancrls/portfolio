@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const LINKS = [
   { href: "/#work", label: "Work" },
@@ -11,64 +10,32 @@ const LINKS = [
 ];
 
 export function Nav() {
-  const header = useRef<HTMLElement>(null);
-  const [hidden, setHidden] = useState(false);
-  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
 
-  // The bar stays while it floats over empty page, and steps out of the way
-  // once content would run underneath it. Scrolling back up brings it in.
+  // The bar is opaque so content passes behind it. The hairline only appears
+  // once there is something behind it to separate from.
   useEffect(() => {
-    const element = header.current;
-    if (!element) return;
-
-    let collideAt = Number.POSITIVE_INFINITY;
-    let lastY = window.scrollY;
     let frame = 0;
-
-    const measure = () => {
-      const first = document.querySelector("main h1");
-      const height = element.offsetHeight;
-      collideAt = first ? first.getBoundingClientRect().top + window.scrollY - height : height;
-    };
-
     const read = () => {
       frame = 0;
-      const y = window.scrollY;
-      const delta = y - lastY;
-      lastY = y;
-
-      if (y <= Math.max(collideAt, 0)) {
-        setHidden(false);
-        return;
-      }
-      // Coasting to a stop must not reveal the bar again, so tiny deltas
-      // leave the current state alone.
-      if (Math.abs(delta) < 4) return;
-      setHidden(delta > 0);
+      setScrolled(window.scrollY > 4);
     };
-
     const onScroll = () => {
       if (frame) return;
       frame = requestAnimationFrame(read);
     };
-
-    measure();
+    read();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", measure);
-    document.fonts?.ready.then(measure).catch(() => {});
-
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", measure);
     };
-  }, [pathname]);
+  }, []);
 
   return (
     <header
-      ref={header}
-      className={`sticky top-0 z-40 transition-[transform,opacity] duration-300 ease-out ${
-        hidden ? "pointer-events-none -translate-y-full opacity-0" : "translate-y-0 opacity-100"
+      className={`sticky top-0 z-40 bg-bone transition-shadow duration-300 ${
+        scrolled ? "shadow-[0_1px_0_var(--rule)]" : ""
       }`}
     >
       <nav
@@ -81,7 +48,7 @@ export function Nav() {
         >
           Juan Costa
         </Link>
-        <ul className="ml-auto flex items-center gap-1 rounded-full bg-paper/85 p-1 shadow-[0_1px_2px_rgb(27_30_25/0.05)] ring-1 ring-[var(--rule)] backdrop-blur-md">
+        <ul className="ml-auto flex items-center gap-1 rounded-full bg-paper p-1 ring-1 ring-[var(--rule)]">
           {LINKS.map((link) => (
             <li key={link.href}>
               <Link
