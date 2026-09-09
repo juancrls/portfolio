@@ -138,6 +138,36 @@ await check("crossing the data table swaps at most once", async () => {
   assert.ok(states <= 2, `layout took ${states} distinct orders during one crossing`);
 });
 
+await check("dropping in the empty run below places the block last", async () => {
+  const before = await order();
+  const handle = await centre('button[aria-label^="Move Filter Card"]');
+
+  await page.mouse.move(handle.x, handle.y);
+  await page.mouse.down();
+  await page.mouse.move(handle.x, handle.y + 40, { steps: 6 });
+
+  const strip = await page.$$eval("[aria-hidden]", (els) => {
+    const hit = els.find((e) => (e.textContent ?? "").includes("place last"));
+    if (!hit) return null;
+    const r = hit.getBoundingClientRect();
+    return { x: r.x + r.width / 2, y: r.y + r.height / 2, label: hit.textContent.trim() };
+  });
+  assert.ok(strip, "landing strip did not appear while dragging");
+
+  await page.mouse.move(strip.x, strip.y, { steps: 20 });
+  const armed = await page.$$eval("[aria-hidden]", (els) =>
+    els.some((e) => (e.textContent ?? "").includes("Release to place last")),
+  );
+  assert.ok(armed, "strip did not arm when hovered");
+
+  await page.mouse.up();
+  await new Promise((r) => setTimeout(r, 400));
+
+  const after = await order();
+  assert.equal(after.length, before.length, "a block went missing");
+  assert.equal(after[after.length - 1], "filter-2", `landed at ${after.join(",")}`);
+});
+
 await browser.close();
 console.log(failures === 0 ? "\nall drag tests passed" : `\n${failures} failing`);
 process.exit(failures === 0 ? 0 : 1);
