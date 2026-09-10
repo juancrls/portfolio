@@ -121,7 +121,7 @@ export function Canvas() {
               aria-hidden
               className={`relative z-10 mt-14 grid place-items-center rounded-[var(--radius-card)] border-2 border-dashed py-10 text-[12px] transition-colors ${
                 drag?.over === END_ZONE
-                  ? "border-[var(--lime-edge)] bg-sage text-ink"
+                  ? "border-[var(--lime-edge)] bg-paper font-medium text-ink shadow-[var(--shadow-rest)]"
                   : "border-rule-firm text-soft"
               }`}
             >
