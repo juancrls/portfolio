@@ -24,17 +24,17 @@ const site = process.env.NEXT_PUBLIC_SITE_URL
 export const metadata: Metadata = {
   metadataBase: new URL(site),
   title: {
-    default: "Juan Costa, backend engineer",
+    default: "Juan Costa, full-stack engineer",
     template: "%s · Juan Costa",
   },
   description:
-    "Backend engineer in São Paulo. Six years on .NET distributed systems, plus the models and interfaces on top.",
+    "Full-stack engineer in São Paulo. Six years on .NET distributed systems, AI through the whole workflow, and models trained from scratch when a product needs one.",
   openGraph: {
     type: "website",
     url: site,
-    title: "Juan Costa, backend engineer",
+    title: "Juan Costa, full-stack engineer",
     description:
-      "Backend engineer in São Paulo. Six years on .NET distributed systems, plus the models and interfaces on top.",
+      "Full-stack engineer in São Paulo. Six years on .NET distributed systems, AI through the whole workflow, and models trained from scratch when a product needs one.",
   },
   robots: { index: true, follow: true },
 };

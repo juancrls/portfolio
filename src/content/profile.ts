@@ -9,9 +9,9 @@ export const CONTACT = {
 };
 
 export const HERO = {
-  headline: "Backend engineer, full stack when it helps.",
-  lede: "Six years on .NET distributed systems: payments, claims, dispatch. I also train the models and build the interfaces on top.",
-  stack: [".NET", "C#", "Azure", "AWS", "SQL Server", "React"],
+  headline: "Full-stack engineer, fluent in AI.",
+  lede: "Six years shipping .NET distributed systems: payments, claims, dispatch. I use AI across architecture, testing and review, and I train the model myself when the product needs one.",
+  stack: [".NET", "C#", "React", "Vue", "Azure", "AWS", "PyTorch"],
 };
 
 export interface ProjectCard {
@@ -59,4 +59,4 @@ export const PROJECTS: ProjectCard[] = [
 ];
 
 export const ABOUT =
-  "Senior software engineer in São Paulo. I spend most of my time on .NET services that move money or coordinate people, and the rest making sure the front end in front of them is not an afterthought. Portuguese native, English C1, open to remote roles.";
+  "Senior software engineer in São Paulo. Most of my work is .NET services that move money or coordinate people, plus the interfaces on top of them. AI runs through how I build, from architecture and tests to code review, and when a product needs a model that does not exist yet I train it. Portuguese native, English C1, open to remote roles.";
