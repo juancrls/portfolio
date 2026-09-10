@@ -2,6 +2,7 @@
 
 import { readInstruments, useFrameRate, usePollingTick } from "@/features/playground/model/instrument";
 import { REGISTRY } from "@/features/playground/model/registry";
+import { Hint } from "@/components/Hint";
 import { actions, selectBlocks, selectOptimized, usePlayground, type PlaygroundState } from "@/features/playground/model/state";
 
 const selectCache = (s: PlaygroundState) => `${s.fetchCount}/${s.cacheHits}`;
@@ -29,19 +30,50 @@ export function Hud() {
       </h2>
 
       <div className="mb-2 flex items-baseline justify-between border-b border-dotted pb-2">
-        <span className="text-faint">frame rate</span>
+        <span className="text-faint">
+          <Hint
+            align="end"
+            className="text-faint"
+            hint="Real frames per second, sampled with requestAnimationFrame. It is the metric that makes jank visible: with optimisations off and 50,000 rows, typing drags this into the teens."
+          >
+            frame rate
+          </Hint>
+        </span>
         <span className={`text-[15px] font-semibold tabular-nums ${fpsTone}`}>{fps} fps</span>
       </div>
 
       <dl className="space-y-1">
-        <Line label="filter+sort" value={`${compute.toFixed(1)} ms`} />
-        <Line label="requests" value={fetches} />
-        <Line label="cache hits" value={hits} />
-        <Line label="memoisation" value={optimized ? "on" : "off"} tone={optimized ? "ok" : "warn"} />
+        <Line
+          label="filter+sort"
+          value={`${compute.toFixed(1)} ms`}
+          hint="Time the table spent filtering and sorting the whole dataset on its last pass. Memoised, this runs only when the data, the filter or the sort actually change."
+        />
+        <Line
+          label="requests"
+          value={fetches}
+          hint="Times the source actually went to the network. Switching row counts and back should not raise this while the cache entry is still fresh."
+        />
+        <Line
+          label="cache hits"
+          value={hits}
+          hint="Times a dataset came back from memory instead. That is staleTime doing its job."
+        />
+        <Line
+          label="memoisation"
+          value={optimized ? "on" : "off"}
+          tone={optimized ? "ok" : "warn"}
+          hint="Mirrors the toolbar switch. Off means useMemo, useDeferredValue, windowing and memo() are all removed from the blocks."
+        />
       </dl>
 
       <h3 className="mb-1 mt-3 font-sans text-[11px] font-semibold uppercase tracking-wider text-faint">
-        Renders
+        <Hint
+          align="end"
+          className="text-faint"
+          hint="How many times each block has re-rendered since the last reset. Selecting a table row should move the table by one, not by every row on screen."
+        >
+          Renders
+        </Hint>
       </h3>
       {blocks.length === 0 ? (
         <p className="text-faint">no blocks on the canvas</p>
@@ -68,10 +100,28 @@ export function Hud() {
   );
 }
 
-function Line({ label, value, tone }: { label: string; value: string; tone?: "ok" | "warn" }) {
+function Line({
+  label,
+  value,
+  tone,
+  hint,
+}: {
+  label: string;
+  value: string;
+  tone?: "ok" | "warn";
+  hint?: React.ReactNode;
+}) {
   return (
     <div className="flex items-baseline justify-between gap-2">
-      <dt className="truncate text-faint">{label}</dt>
+      <dt className="truncate text-faint">
+        {hint ? (
+          <Hint hint={hint} align="end" className="text-faint">
+            {label}
+          </Hint>
+        ) : (
+          label
+        )}
+      </dt>
       <dd
         className={`tabular-nums ${
           tone === "ok" ? "text-moss" : tone === "warn" ? "text-clay" : ""

@@ -1,6 +1,7 @@
 "use client";
 
 import { resetInstruments } from "@/features/playground/model/instrument";
+import { Hint } from "@/components/Hint";
 import { actions, selectOptimized, selectRowTarget, usePlayground } from "@/features/playground/model/state";
 
 const ROW_OPTIONS = [1_000, 5_000, 50_000];
@@ -33,7 +34,19 @@ export function Toolbar() {
           <span className="sr-only">Toggle render optimisations</span>
         </button>
         <span className="text-[12px] font-medium">
-          Optimisations{" "}
+          <Hint
+            align="start"
+            hint={
+              <>
+                Turning this off really removes <strong className="font-medium text-ink">useMemo</strong>,{" "}
+                <strong className="font-medium text-ink">useDeferredValue</strong>, list windowing and{" "}
+                <strong className="font-medium text-ink">memo()</strong> from the blocks below. Type in
+                the filter with it on, then off, and watch the frame rate and the render counts.
+              </>
+            }
+          >
+            Optimisations
+          </Hint>{" "}
           <span className={`font-mono text-[11px] ${optimized ? "text-moss" : "text-clay"}`}>
             {optimized ? "on" : "off"}
           </span>
@@ -41,7 +54,13 @@ export function Toolbar() {
       </div>
 
       <label className="flex items-center gap-2 text-[12px]">
-        <span className="text-soft">Dataset</span>
+        <Hint
+          align="start"
+          hint="How many rows the source generates. The cost of every optimisation grows with this, so the difference the switch makes is much louder at 50,000 than at 1,000."
+          className="text-soft"
+        >
+          Dataset
+        </Hint>
         <select
           value={rowTarget}
           onChange={(event) => {
