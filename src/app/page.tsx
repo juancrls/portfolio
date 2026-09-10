@@ -1,19 +1,33 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ABOUT, CONTACT, HERO, PROJECTS } from "@/content/profile";
 import { SignatureStroke } from "@/components/SignatureStroke";
 import { IconArrowRight } from "@/components/icons";
+import portrait from "@/content/portrait.jpg";
 
 export default function Home() {
   return (
     <div className="mx-auto max-w-[68rem] px-5 sm:px-8">
       <section className="settle relative pb-20 pt-14 sm:pt-24">
-        <h1 className="display max-w-[16ch] text-[clamp(2.6rem,7.5vw,5.2rem)]">
-          {HERO.headline}
-        </h1>
-        <SignatureStroke />
-        <p className="mt-7 max-w-[46ch] text-[clamp(1rem,1.6vw,1.15rem)] leading-[1.55] text-soft">
-          {HERO.lede}
-        </p>
+        <div className="grid gap-7 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-12">
+          <div className="order-2 min-w-0 sm:order-1">
+            <h1 className="display max-w-[16ch] text-[clamp(2.6rem,7.5vw,5.2rem)]">
+              {HERO.headline}
+            </h1>
+            <SignatureStroke />
+            <p className="mt-7 max-w-[46ch] text-[clamp(1rem,1.6vw,1.15rem)] leading-[1.55] text-soft">
+              {HERO.lede}
+            </p>
+          </div>
+
+          <Image
+            src={portrait}
+            alt="Juan Costa"
+            priority
+            sizes="(min-width: 640px) 200px, 88px"
+            className="order-1 h-[88px] w-[88px] rounded-[var(--radius-panel)] object-cover ring-1 ring-[var(--rule)] sm:order-2 sm:h-[200px] sm:w-[200px]"
+          />
+        </div>
 
         <div className="mt-9 flex flex-wrap items-center gap-3">
           <Link
