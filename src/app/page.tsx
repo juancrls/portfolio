@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-[68rem] px-5 sm:px-8">
       <section className="settle relative pb-20 pt-14 sm:pt-24">
-        <div className="grid gap-7 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-12">
+        <div className="grid gap-7 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-12">
           <div className="order-2 min-w-0 sm:order-1">
             <h1 className="display max-w-[16ch] text-[clamp(2.6rem,7.5vw,5.2rem)]">
               {HERO.headline}
