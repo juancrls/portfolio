@@ -113,7 +113,7 @@ export function BlockShell({ id, kind, missing, note, children }: Props) {
                     ? `${spec.name} picked up. Arrow keys to move, Enter to drop, Escape to cancel, Delete to remove.`
                     : `Move ${spec.name}. Drag, or press Enter to pick up.`
                 }
-                className="grid h-7 w-6 shrink-0 place-items-center rounded-md text-faint transition-colors hover:bg-bone-deep hover:text-ink"
+                className="grid h-7 w-6 shrink-0 cursor-grab place-items-center rounded-md text-faint transition-colors hover:bg-bone-deep hover:text-ink active:cursor-grabbing"
               >
                 <IconGrip size={15} />
               </button>
