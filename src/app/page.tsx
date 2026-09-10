@@ -24,8 +24,8 @@ export default function Home() {
             src={portrait}
             alt="Juan Costa"
             priority
-            sizes="(min-width: 640px) 200px, 88px"
-            className="order-1 h-[88px] w-[88px] rounded-[var(--radius-panel)] object-cover ring-1 ring-[var(--rule)] sm:order-2 sm:h-[200px] sm:w-[200px]"
+            sizes="(min-width: 640px) 232px, 104px"
+            className="order-1 h-[130px] w-[104px] rounded-[var(--radius-panel)] object-cover ring-1 ring-[var(--rule)] sm:order-2 sm:h-[290px] sm:w-[232px]"
           />
         </div>
 
