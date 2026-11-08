@@ -1,7 +1,7 @@
 
 export const CONTACT = {
   name: "Juan Costa",
-  email: "juan1112@outlook.com.br",
+  email: "juanfcosta.dev@gmail.com",
   github: "https://github.com/juancrls",
   linkedin: "https://linkedin.com/in/juan-fcosta",
   repo: "https://github.com/juancrls/portfolio",
